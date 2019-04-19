@@ -47,10 +47,10 @@ public class testGui extends JFrame{
 		    frame.add(liveStream.imageLabel);
 		    
 		    
-		    Graphics g = frame.getGraphics();
-		    frame.paint(g);
-		    g.setColor(Color.WHITE);
-		    g.drawString("FPS number: " + liveStream.fps, 400,200);
+//		    Graphics g = frame.getGraphics();
+//		    frame.paint(g);
+//		    g.setColor(Color.WHITE);
+//		    g.drawString("FPS number: " + liveStream.fps, 400,200);
 		    //frame.pack();
 		    
 	
