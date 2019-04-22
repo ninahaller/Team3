@@ -1,26 +1,36 @@
 package inputOutput;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UnsupportedLookAndFeelException;import org.opencv.videoio.Videoio;
 
 public class testGui extends JFrame{
 	
 	
 	 JFrame frame;
-
-	public static void main(String[] args) {
-		}
-	
+	 
+	JLabel label;
 	
 	
 	public testGui() {
 
+		
+		
+			
+		    
+		   
+		    init();
+		    
+}
+	
+	public void  init() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -37,23 +47,29 @@ public class testGui extends JFrame{
 			e.printStackTrace();
 		}
 		
-		
-			frame = new JFrame("test");
-		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		    frame.setSize(1920,1080);
-		    frame.setVisible(true);
-		    
-		    liveStream.imageLabel = new JLabel();
-		    frame.add(liveStream.imageLabel);
-		    
-		    
-//		    Graphics g = frame.getGraphics();
-//		    frame.paint(g);
-//		    g.setColor(Color.WHITE);
-//		    g.drawString("FPS number: " + liveStream.fps, 400,200);
-		    //frame.pack();
-		    
+		 frame = new JFrame("windows");
 	
+		 frame.setVisible(true);
+		 frame.setSize(500,500);
+		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 
+		
+		 
+		 liveStream.imageLabel = new JLabel();
+		 
+		 frame.add(liveStream.imageLabel);
+		 
+		
+		
+		
+		 
+		 
 	}
+	public static void main(String[] args) {
+		
+		new liveStream(); 
+		
+	}
+
 	}
 

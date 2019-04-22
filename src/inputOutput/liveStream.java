@@ -22,8 +22,9 @@ public class liveStream{
   }
   
   
-   static JLabel imageLabel;
-   static int fps;
+    static JLabel imageLabel;
+    int fps;
+   
   /**
    * .
    * @param args
@@ -32,6 +33,8 @@ public class liveStream{
   
   public static void main(String[] args) {
 	   new testGui();
+	  
+	   
 	   liveStream app = new liveStream();
 	   app.runMainLoop(args);
   }
@@ -66,7 +69,9 @@ public class liveStream{
           if (!webcamMatImage.empty()) {
             tempImage = imageProcessor.toBufferedImage(webcamMatImage);
             ImageIcon imageIcon = new ImageIcon(tempImage, "Captured video");
+            imageLabel.setSize(200, 300);
             imageLabel.setIcon(imageIcon);
+            
           } else {
             System.out.println(" -- Frame not captured -- Break!");
             break;
