@@ -28,6 +28,7 @@ public class TestPanel extends JPanel {
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(this.image==null) {
