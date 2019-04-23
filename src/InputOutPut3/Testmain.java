@@ -115,6 +115,7 @@ public class Testmain  {
 			// Loop for reading a BufferedImage and painting it on a panel;
 			while (vc.open) {
 				panel.setFace(vc.setBufImg());
+				panel.fps = vc.fps;
 				panel.repaint();
 
 			}

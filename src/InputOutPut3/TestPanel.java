@@ -12,11 +12,13 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class TestPanel extends JPanel {
+	
 
 	
 	
 	private BufferedImage image;
 	int count = 0;
+	public double fps;
 	
 	public TestPanel() {
 		super();
@@ -39,6 +41,6 @@ public class TestPanel extends JPanel {
 		g.drawImage(this.image, 150, 10, 720, 576, null);
 		g.setFont(new Font("arial", 2, 20));
 		g.setColor(Color.WHITE);
-		g.drawString("WebCam processing frame by frame [Frame: " + (count++) + "]", 150, 50);
+		g.drawString("WebCam processing frame by frame [Frame: " + (count++) + " *** FPS : " + fps + "]", 150, 50);
 	}
 }

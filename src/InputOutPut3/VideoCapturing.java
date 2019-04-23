@@ -17,6 +17,7 @@ public class VideoCapturing {
 	public boolean open = false;
 	public Mat frameMatrix;
 	public BufferedImage bufImg = null;
+	public int fps;
 	
 	// BufferedImage bufImg = null;
 	public VideoCapturing() {
@@ -56,7 +57,7 @@ public class VideoCapturing {
 	public Mat readMatFrame() { // könnte auch getNextFrame heißen;
 		// System.out.println("Hello");
 		System.out.println((int) vc.get(Videoio.CAP_PROP_FPS));
-		
+		fps = (int) vc.get(Videoio.CAP_PROP_FPS);
 		vc.read(frameMatrix);
 		
 		if (frameMatrix.empty()) {
