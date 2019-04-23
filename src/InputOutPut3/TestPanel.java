@@ -18,7 +18,7 @@ public class TestPanel extends JPanel {
 	
 	private BufferedImage image;
 	int count = 0;
-	public double fps;
+	public int fps;
 	
 	public TestPanel() {
 		super();

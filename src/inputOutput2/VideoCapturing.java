@@ -8,7 +8,7 @@ import org.opencv.highgui.HighGui;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 
-public class VideoCapturing {
+public class VideoCapturing extends Oberklasse {
 	private VideoCapture vc;
 	public boolean open = false;
 	public Mat frameMatrix;

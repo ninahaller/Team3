@@ -1,9 +1,5 @@
 package InputOutPut3;
 
-
-
-
-
 import java.awt.BorderLayout;
 
 import java.awt.FlowLayout;
@@ -17,134 +13,158 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileSystemView;
 
-public class Testmain  {
+public class Testmain {
 
+	public static void main(String args[]) throws InterruptedException, ClassNotFoundException, InstantiationException,
+			IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
+		final Scanner scan = new Scanner(System.in);
+		VideoCapturing vc = new VideoCapturing();
 
-  public static void main(String args[]) throws InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		JFrame frame = new JFrame("WebCam Capture - Image");
+		JPanel main = new JPanel();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1000, 700);
 
-    final Scanner scan = new Scanner(System.in);
-    VideoCapturing vc = new VideoCapturing();
+		frame.setLayout(new BorderLayout());
+		main.setLayout(new BorderLayout());
+		// panel für tespanel
+		TestPanel panel = new TestPanel();
 
-    JFrame frame = new JFrame("WebCam Capture - Image");
-    JPanel main = new JPanel();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(1000, 700);
+		// frame.getContentPane().add(panel, BorderLayout.CENTER);
+		main.add(panel, BorderLayout.CENTER);
 
-    frame.setLayout(new BorderLayout());
-    main.setLayout(new BorderLayout());
-    //panel für tespanel
-    TestPanel panel = new TestPanel();
+		// Panel für die Buttons:
+		JPanel button = new JPanel();
+		JButton button1 = new JButton("start");
+		JButton button2 = new JButton("lade");
 
-    //frame.getContentPane().add(panel, BorderLayout.CENTER);
-    main.add(panel, BorderLayout.CENTER);
+		button.setLayout(new FlowLayout());
+		button1.setSize(100, 20);
+		button2.setSize(100, 20);
+		button.add(button1);
+		button.add(button2);
 
-    //Panel für die Buttons:
-    JPanel button = new JPanel();
-    JButton button1 = new JButton("start");
-    JButton button2 = new JButton("lade");
+		main.add(button, BorderLayout.PAGE_END);
 
-    button.setLayout(new FlowLayout());
-    button1.setSize(100,20);
-    button2.setSize(100,20);
-    button.add(button1);
-    button.add(button2);
-
-    main.add(button, BorderLayout.PAGE_END);
-
-    //frame.add(button, BorderLayout.PAGE_END);
-    frame.getContentPane().add(main);
+		// frame.add(button, BorderLayout.PAGE_END);
+		frame.getContentPane().add(main);
 		frame.validate();
 		frame.setVisible(true);
-		
-//		
-//		 button1.addActionListener(new java.awt.event.ActionListener() {
-//	            // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
-//	            public void actionPerformed(java.awt.event.ActionEvent e) {
-//	            	
-//	            	vc.capture();
-//
-//	    			// Loop for reading a BufferedImage and painting it on a panel;
-//	    			while (vc.open) {
-//	    				panel.setFace(vc.setBufImg());
-//	    				panel.repaint();
-//	              
-//	               
-//	            }
-//	            }});
-//		 
-//		 button2.addActionListener(new java.awt.event.ActionListener() {
-//	            // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
-//	            public void actionPerformed(java.awt.event.ActionEvent e) {
-//	            	
-//	            	final JFileChooser fc = 
-//	  			          new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); // filechooser will open the explorer 
-//	  			      int returnVal = fc.showOpenDialog(fc);
-//	  			      String loadFile = null;
-//	  			      if (returnVal == JFileChooser.APPROVE_OPTION) {
-//	  			        loadFile = fc.getSelectedFile().getAbsolutePath();
-//	  			        vc.capture(loadFile);
-//	  			       
-//	  			        while (vc.open) {
-//	  						panel.setFace(vc.setBufImg());
-//	  						 try {
-//	  				              Thread.sleep(25);
-//	  				            } catch (InterruptedException es) {
-//	  				              // TODO Auto-generated catch block
-//	  				              es.printStackTrace();
-//	  				            }
-//	  					
-//	  						panel.repaint();
-//	  						
-//
-//	  					}
-//	  			
-//	  		}
-//	              
-//	               
-//	            }
-//	            });
-		System.out.println("Bitte geben Sie '0' für Livestream oder '1' für Video/Bild  ein");
+
+		//
+		// button1.addActionListener(new java.awt.event.ActionListener() {
+		// // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
+		// public void actionPerformed(java.awt.event.ActionEvent e) {
+		//
+		// vc.capture();
+		//
+		// // Loop for reading a BufferedImage and painting it on a panel;
+		// while (vc.open) {
+		// panel.setFace(vc.setBufImg());
+		// panel.repaint();
+		//
+		//
+		// }
+		// }});
+		//
+		// button2.addActionListener(new java.awt.event.ActionListener() {
+		// // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
+		// public void actionPerformed(java.awt.event.ActionEvent e) {
+		//
+		// final JFileChooser fc =
+		// new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //
+		// filechooser will open the explorer
+		// int returnVal = fc.showOpenDialog(fc);
+		// String loadFile = null;
+		// if (returnVal == JFileChooser.APPROVE_OPTION) {
+		// loadFile = fc.getSelectedFile().getAbsolutePath();
+		// vc.capture(loadFile);
+		//
+		// while (vc.open) {
+		// panel.setFace(vc.setBufImg());
+		// try {
+		// Thread.sleep(25);
+		// } catch (InterruptedException es) {
+		// // TODO Auto-generated catch block
+		// es.printStackTrace();
+		// }
+		//
+		// panel.repaint();
+		//
+		//
+		// }
+		//
+		// }
+		//
+		//
+		// }
+		// });
+		System.out.println(
+				"Bitte geben Sie '0' für Livestream oder '1' für Video/Bild  ein und für gleichzeitiges Speichern die zahl doppelt eingeben");
 		int checkStart = scan.nextInt();
 
-		//The datatransport starts after user interaction. Here a Scanner have replaced the subsequent Button;
-		if (checkStart == 1) {
+		// The datatransport starts after user interaction. Here a Scanner have replaced
+		// the subsequent Button;
+		if (checkStart == 0) {
 			vc.capture();
 
 			// Loop for reading a BufferedImage and painting it on a panel;
 			while (vc.open) {
-				panel.setFace(vc.setBufImg());
+				panel.setFace(vc.readBufImg());
 				panel.fps = vc.fps;
 				panel.repaint();
 
 			}
-		}else if( checkStart == 0) {
-		 	final JFileChooser fc = 
-			          new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); // filechooser will open the explorer 
-			      int returnVal = fc.showOpenDialog(fc);
-			      String loadFile = null;
-			      if (returnVal == JFileChooser.APPROVE_OPTION) {
-			        loadFile = fc.getSelectedFile().getAbsolutePath();
-			        vc.capture(loadFile);
-			       
-			        while (vc.open) {
-						panel.setFace(vc.setBufImg());
-						 try {
-				              Thread.sleep(25);
-				            } catch (InterruptedException es) {
-				              // TODO Auto-generated catch block
-				              es.printStackTrace();
-				            }
-					
-						panel.repaint();
-						
+		} else if (checkStart == 00) {
+			final JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); // filechooser
+																												// will
+																												// open
+																												// the
+																												// explorer
+			int returnVal = fc.showOpenDialog(fc);
+			String loadFile = null;
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				loadFile = fc.getSelectedFile().getAbsolutePath();
 
+				vc.capture();
+
+				// Loop for reading a BufferedImage and painting it on a panel;
+				while (vc.open) {
+					panel.setFace(vc.readAndSave(loadFile));
+					panel.fps = vc.fps;
+					panel.repaint();
+
+				}
+			}
+		} else if (checkStart == 1) {
+			final JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); // filechooser
+																												// will
+																												// open
+																												// the
+																												// explorer
+			int returnVal = fc.showOpenDialog(fc);
+			String loadFile = null;
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				loadFile = fc.getSelectedFile().getAbsolutePath();
+				vc.capture(loadFile);
+
+				while (vc.open) {
+					panel.setFace(vc.readBufImg());
+					try {
+						Thread.sleep(25);
+					} catch (InterruptedException es) {
+						// TODO Auto-generated catch block
+						es.printStackTrace();
 					}
-			
+
+					panel.repaint();
+
+				}
+
+			}
 		}
-		}
-	
 
 	}
 }

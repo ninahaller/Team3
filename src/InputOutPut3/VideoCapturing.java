@@ -8,8 +8,10 @@ import java.awt.image.BufferedImage;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
 import org.opencv.highgui.HighGui;
 import org.opencv.videoio.VideoCapture;
+import org.opencv.videoio.VideoWriter;
 import org.opencv.videoio.Videoio;
 
 public class VideoCapturing {
@@ -68,7 +70,28 @@ public class VideoCapturing {
 
 	}
 
-	public BufferedImage setBufImg() {
+	public BufferedImage readAndSave(String path) { // könnte auch getNextFrame heißen;
+		// System.out.println("Hello");
+		System.out.println((int) vc.get(Videoio.CAP_PROP_FPS));
+		fps = (int) vc.get(Videoio.CAP_PROP_FPS);
+		
+		VideoWriter writer;
+		Size size = new Size((int) vc.get(Videoio.CAP_PROP_FRAME_WIDTH), (int) vc.get(Videoio.CAP_PROP_FRAME_HEIGHT));
+		int fourcc = VideoWriter.fourcc('M','J','P','G');
+		
+		
+		writer = new VideoWriter(path, fourcc, 20.0, size);
+		if (frameMatrix.empty()) {
+			System.out.println("!!! Nothing captured from webcam !!!");
+		}
+
+		writer.write(frameMatrix);
+		
+		
+		return readBufImg();
+	}
+	
+	public BufferedImage readBufImg() {
 		// System.out.println("Hello2");
 		bufImg = (BufferedImage) HighGui.toBufferedImage(readMatFrame());
 		return bufImg;
