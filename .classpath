@@ -8,6 +8,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/opencv"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/opencv3.4.6"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenCV"/>
+=======
+>>>>>>> 09d5867ba68d6d82ddf5e202b34c0980dfb63758
 	<classpathentry kind="output" path="bin"/>
 </classpath>
