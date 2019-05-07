@@ -19,8 +19,8 @@ public class Main {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
 		final Scanner scan = new Scanner(System.in);
-		Data live = new Livestream();
-		Data img = new Image();
+		AbstractOpenCVSource live = new LivestreamSource();
+		AbstractOpenCVSource img = new FilestreamSource();
 
 		JFrame frame = new JFrame("WebCam Capture - Image");
 		JPanel main = new JPanel();

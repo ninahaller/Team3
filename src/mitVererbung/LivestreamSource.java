@@ -8,7 +8,7 @@ import org.opencv.highgui.HighGui;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 
-public class Livestream extends Data{
+public class LivestreamSource extends AbstractOpenCVSource{
 	
 //	private VideoCapture vc;
 //	public boolean open = false;
@@ -16,7 +16,7 @@ public class Livestream extends Data{
 //	public BufferedImage bufImg = null;
 //	public int fps;
 	
-	public Livestream() {
+	public LivestreamSource() {
 		super();
 	}
 	

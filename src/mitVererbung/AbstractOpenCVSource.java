@@ -6,7 +6,7 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
-public abstract class Data {
+public abstract class AbstractOpenCVSource extends AbstractImageSource{
 
 	public static VideoCapture vc;
 	public static boolean open = false;
@@ -14,7 +14,7 @@ public abstract class Data {
 	public static BufferedImage bufImg = null;
 	public static int fps;
 
-	public Data() {
+	public AbstractOpenCVSource() {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		frameMatrix = new Mat();
 	}
@@ -24,13 +24,13 @@ public abstract class Data {
 	public abstract BufferedImage readBufImg();
 
 	public void getOpenCVLivestream() {
-		Livestream live = new Livestream();
+		LivestreamSource live = new LivestreamSource();
 		live.capture();
 
 	}
 
 	public void getOpenCVImage(String path) {
-		Image img = new Image();
+		FilestreamSource img = new FilestreamSource();
 		img.capture(path);
 	}
 
