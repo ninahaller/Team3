@@ -1,5 +1,7 @@
 package mitVererbung;
 
+
+
 import java.awt.BorderLayout;
 
 import java.util.Scanner;
@@ -19,8 +21,8 @@ public class Main {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
 		final Scanner scan = new Scanner(System.in);
-		AbstractOpenCVSource live = new LivestreamSource();
-		AbstractOpenCVSource img = new FilestreamSource();
+		
+		
 
 		JFrame frame = new JFrame("WebCam Capture - Image");
 		JPanel main = new JPanel();
@@ -42,10 +44,12 @@ public class Main {
 		int checkStart = scan.nextInt();
 
 		if (checkStart == 1) {
-			live.getOpenCVLivestream();
+			
+			LivestreamSource live = new LivestreamSource(0);
+			live.openConnection();
 
 			// Loop for reading a BufferedImage and painting it on a panel;
-			while (live.open) {
+			while (live.isConnected) {
 				panel.setFace(live.readBufImg());
 				panel.fps =live.fps;
 				panel.repaint();
@@ -57,20 +61,23 @@ public class Main {
 
 			int returnVal = fc.showOpenDialog(fc);
 			String loadFile = null;
+			
+
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				loadFile = fc.getSelectedFile().getAbsolutePath();
-				img.getOpenCVImage(loadFile);
+				FilestreamSource file = new FilestreamSource(loadFile);
+				file.openConnection();
 
-				while (img.open) {
-					panel.setFace(img.readBufImg());
+				while (file.isConnected) {
+					panel.setFace(file.readBufImg());
 					try {
 						Thread.sleep(25);
 					} catch (InterruptedException es) {
 						// TODO Auto-generated catch block
 						es.printStackTrace();
 					}
-					panel.fps = img.fps;
+					panel.fps = file.fps;
 					panel.repaint();
 
 				}

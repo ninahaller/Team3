@@ -8,32 +8,36 @@ import org.opencv.highgui.HighGui;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 
-public class LivestreamSource extends AbstractOpenCVSource{
+public class LivestreamSource extends AbstractImageSource{
 	
-//	private VideoCapture vc;
-//	public boolean open = false;
-//	public Mat frameMatrix;
-//	public BufferedImage bufImg = null;
-//	public int fps;
+	private VideoCapture vc;
+	public BufferedImage bufImg = null;
+	public int fps;
+	private int deviceID = 0;
 	
-	public LivestreamSource() {
-		super();
+	public LivestreamSource(int id) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		frameMatrix = new Mat();
+		deviceID = id;
 	}
 	
-	public void capture() {
+	public boolean openConnection() {
 		
 		System.out.println("capDev");
 		vc = new VideoCapture(0);
 		
 		if(vc.isOpened()) {
 			System.out.println("found VideoSource " + vc.toString());
-			open = true;
+			isConnected = true;
 		}else {
 			System.out.println("!!! Did not connect to camera !!!");
 		}
+		
+		
+		return isConnected;
 	}
 	
-	public Mat readMatFrame() { // könnte auch getNextFrame heißen;
+	public Mat getNextMat() { // könnte auch getNextFrame heißen;
 		// System.out.println("Hello");
 		System.out.println((int) vc.get(Videoio.CAP_PROP_FPS));
 		fps = (int) vc.get(Videoio.CAP_PROP_FPS);
@@ -50,14 +54,15 @@ public class LivestreamSource extends AbstractOpenCVSource{
 	
 	public BufferedImage readBufImg() {
 		// System.out.println("Hello2");
-		bufImg = (BufferedImage) HighGui.toBufferedImage(readMatFrame());
+		bufImg = (BufferedImage) HighGui.toBufferedImage(getNextMat());
 		return bufImg;
 
 	}
 
-	public void releaseDevice() {
+	public boolean closeConnection() {
 		vc.release();
-		open = false;
+		isConnected = false;
+		return isConnected;
 	}
 
 }
